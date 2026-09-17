@@ -4,6 +4,41 @@
   var yr=document.getElementById('yr'); if(yr) yr.textContent=new Date().getFullYear();
   var ART=(window.HERO_ART||[]).concat(window.HERO_ART_EXTRA||[]);
 
+  /* ---------- Pillars: scroll-triggered stagger reveal ---------- */
+  (function(){
+    var pillars=document.querySelectorAll('.pillar');
+    if(!pillars.length || !('IntersectionObserver' in window)){
+      pillars.forEach(function(p){ p.classList.add('in-view'); });
+      return;
+    }
+    var io=new IntersectionObserver(function(entries,obs){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        pillars.forEach(function(p,i){ setTimeout(function(){ p.classList.add('in-view'); }, i*120); });
+        obs.disconnect();
+      });
+    },{threshold:.3});
+    io.observe(document.querySelector('.pillars'));
+  })();
+
+  /* ---------- Lore: scroll-triggered reveal ---------- */
+  (function(){
+    var reveals=document.querySelectorAll('#lore .origin, #lore .lore-seal');
+    if(!reveals.length) return;
+    if(!('IntersectionObserver' in window)){
+      reveals.forEach(function(r){ r.classList.add('in-view'); });
+      return;
+    }
+    var io=new IntersectionObserver(function(entries,obs){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        en.target.classList.add('in-view');
+        obs.unobserve(en.target);
+      });
+    },{threshold:.2});
+    reveals.forEach(function(r){ io.observe(r); });
+  })();
+
   /* ---------- View routing (hash based) ---------- */
   var views=document.querySelectorAll('.view');
   function show(id){
@@ -28,10 +63,13 @@
   /* ---------- Heroes grid (finished card images) ---------- */
   var grid=document.getElementById('heroGrid');
   if(grid){
-    ART.forEach(function(h){
+    ART.forEach(function(h,i){
       var el=document.createElement('div'); el.className='hcard';
+      el.style.setProperty('--i',i);
+      if(h.accent) el.style.setProperty('--accent',h.accent);
       el.innerHTML='<img class="art" alt="'+h.name+'" src="'+h.img+'" loading="lazy" style="width:100%;height:100%;object-fit:cover">'+
-                   '<div class="glare"></div>';
+                   '<div class="glare"></div>'+
+                   '<div class="meta"><span class="cls">'+h.cls+'</span><h3>'+h.name+'</h3></div>';
       grid.appendChild(el);
     });
     grid.querySelectorAll('.hcard').forEach(function(card){
@@ -44,6 +82,40 @@
       card.addEventListener('pointerleave',function(){ card.style.transform=''; });
     });
   }
+
+  /* ---------- Ambient embers ---------- */
+  function spawnEmbers(container,count,colors){
+    if(!container) return;
+    for(var e=0;e<count;e++){
+      var em=document.createElement('div'); em.className='ember';
+      var size=(3+Math.random()*4).toFixed(1);
+      em.style.left=(Math.random()*100)+'%';
+      em.style.width=size+'px'; em.style.height=size+'px';
+      em.style.setProperty('--dx',((Math.random()*40)-20).toFixed(0)+'px');
+      if(colors) em.style.setProperty('--spark',colors[e%colors.length]);
+      em.style.animationDuration=(9+Math.random()*10).toFixed(1)+'s';
+      em.style.animationDelay=(-Math.random()*18).toFixed(1)+'s';
+      container.appendChild(em);
+    }
+  }
+  spawnEmbers(document.getElementById('heroAmbient'),16);
+  spawnEmbers(document.getElementById('loreAmbient'),18,['#ff6a4d','#c2aef2']);
+  spawnEmbers(document.getElementById('updatesAmbient'),12,['#e9c876','#9dc3d8']);
+
+  /* ---------- Updates: scroll-triggered reveal ---------- */
+  (function(){
+    var el=document.querySelector('.updates-empty');
+    if(!el) return;
+    if(!('IntersectionObserver' in window)){ el.classList.add('in-view'); return; }
+    var io=new IntersectionObserver(function(entries,obs){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        el.classList.add('in-view');
+        obs.disconnect();
+      });
+    },{threshold:.2});
+    io.observe(el);
+  })();
 
   /* ---------- Home gameplay gallery ---------- */
   (function(){

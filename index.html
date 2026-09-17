@@ -44,7 +44,7 @@
       </a>
     </div>
     <!-- REPLACE href with DOWNLOAD_URL -->
-    <a class="btn-download" id="dlTop" href="#" download>
+    <a class="btn-download" id="dlTop" aria-disabled="true" title="Coming soon — not available yet">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
       Download the game
     </a>
@@ -67,7 +67,7 @@
         <div class="rule"><span>The Trading Card Game</span></div>
         <p class="lead">Draft heroes, forge your deck, and outwit your rival across a battlefield where a single card can turn the tide.</p>
         <div class="hero-cta">
-          <a class="btn-download" href="#" download>
+          <a class="btn-download" aria-disabled="true" title="Coming soon — not available yet">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
             Download the game
           </a>
@@ -89,9 +89,18 @@
           <p>Valour is quick to learn and deep to master. Here's the shape of a game.</p>
         </div>
         <div class="pillars">
-          <div class="pillar"><div class="num">I</div><h3>Build the deck</h3><p>Combine heroes, spells, and terrain into a strategy that's yours. No two decks read the same.</p></div>
-          <div class="pillar"><div class="num">II</div><h3>Command the field</h3><p>Position matters. Hold the line, flank, or gamble everything on one decisive turn.</p></div>
-          <div class="pillar"><div class="num">III</div><h3>Claim victory</h3><p>Break your rival's resolve before they break yours. Every card played is a bet.</p></div>
+          <div class="pillar pillar--build">
+            <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="12" height="16" rx="2"/><rect x="9" y="3" width="12" height="16" rx="2"/></svg>
+            <div class="num">I</div><h3>Build the deck</h3><p>Combine heroes, spells, and terrain into a strategy that's yours. No two decks read the same.</p>
+          </div>
+          <div class="pillar pillar--field">
+            <svg class="pillar-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l9 4v6c0 5-3.8 9.6-9 12-5.2-2.4-9-7-9-12V5l9-4z"/></svg>
+            <div class="num">II</div><h3>Command the field</h3><p>Position matters. Hold the line, flank, or gamble everything on one decisive turn.</p>
+          </div>
+          <div class="pillar pillar--victory">
+            <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M3 8l4 3 5-6 5 6 4-3-2 10H5L3 8z"/></svg>
+            <div class="num">III</div><h3>Claim victory</h3><p>Break your rival's resolve before they break yours. Every card played is a bet.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -105,7 +114,7 @@
         </div>
         <div class="shots" id="shotGallery"><!-- built by JS from VALOUR_SHOTS --></div>
         <div style="margin-top:54px">
-          <a class="btn-download" href="#" download>
+          <a class="btn-download" aria-disabled="true" title="Coming soon — not available yet">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
             Download the game
           </a>
@@ -116,6 +125,7 @@
 
   <!-- ================= HEROES ================= -->
   <section class="view" id="heroes">
+    <div class="hero-ambient" id="heroAmbient" aria-hidden="true"></div>
     <div class="wrap">
       <div class="page-head">
         <div class="eyebrow">The Roster</div>
@@ -128,6 +138,7 @@
 
   <!-- ================= LORE ================= -->
   <section class="view" id="lore">
+    <div class="lore-ambient" id="loreAmbient" aria-hidden="true"></div>
     <div class="wrap lore-wrap">
       <div class="page-head">
         <div class="eyebrow">The World</div>
@@ -135,16 +146,22 @@
       </div>
       <p class="lore-intro">Valour is set in Eryndor — a world where gods still watch, where the dead can be made to answer the living, and where the line between a citizen and a criminal is often just a purse or a uniform. Two men rise from opposite ends of it. Their bond, and the reckoning waiting at the end of it, is the story you'll play.</p>
 
-      <div class="origin">
-        <div class="o-head"><span class="o-kicker">Pride of the Forsaken</span><h3>Ike of Korrath</h3></div>
-        <blockquote>“I do not want their throne. I only refuse to pretend their lives stop being my concern.”</blockquote>
-        <p>Born in a city where a uniform was the only thing separating a soldier from a thief, Ike never wanted to lead — he only ever wanted to bring people home. The discarded and the disgraced began calling him the Pride of the Forsaken, and soon kings were waiting on his word. He refuses every crown they offer. But power finds a man whether he claims it or not, and the one person who sees where that road ends is the brother who once had nowhere else to go.</p>
+      <div class="origin origin--ike">
+        <div class="origin-body">
+          <div class="o-head"><span class="o-kicker">Pride of the Forsaken</span><h3>Ike of Korrath</h3></div>
+          <blockquote>“I do not want their throne. I only refuse to pretend their lives stop being my concern.”</blockquote>
+          <p>Born in a city where a uniform was the only thing separating a soldier from a thief, Ike never wanted to lead — he only ever wanted to bring people home. The discarded and the disgraced began calling him the Pride of the Forsaken, and soon kings were waiting on his word. He refuses every crown they offer. But power finds a man whether he claims it or not, and the one person who sees where that road ends is the brother who once had nowhere else to go.</p>
+        </div>
+        <img class="origin-art" src="assets/cards/ike.png" alt="" aria-hidden="true">
       </div>
 
-      <div class="origin">
-        <div class="o-head"><span class="o-kicker">Prince of the Dead</span><h3>Veer of Nyxareth</h3></div>
-        <blockquote>“The weak are not owed a gentler world. They are owed the fire that will forge them.”</blockquote>
-        <p>Heir to the Hollow Crown of Nyxareth, where the dead lean toward the living and only the strongest voice commands them, Veer believed mercy was rot and that pressure was the only thing worth forging a soul in. Exiled by the father he called weak, he wandered as living proof of his own creed — until the day he turned home to take back what was his. What waits for him there asks a question his strength was never built to answer.</p>
+      <div class="origin origin--veer">
+        <div class="origin-body">
+          <div class="o-head"><span class="o-kicker">Prince of the Dead</span><h3>Veer of Nyxareth</h3></div>
+          <blockquote>“The weak are not owed a gentler world. They are owed the fire that will forge them.”</blockquote>
+          <p>Heir to the Hollow Crown of Nyxareth, where the dead lean toward the living and only the strongest voice commands them, Veer believed mercy was rot and that pressure was the only thing worth forging a soul in. Exiled by the father he called weak, he wandered as living proof of his own creed — until the day he turned home to take back what was his. What waits for him there asks a question his strength was never built to answer.</p>
+        </div>
+        <img class="origin-art" src="assets/cards/veer.png" alt="" aria-hidden="true">
       </div>
 
       <div class="lore-seal">
@@ -155,13 +172,15 @@
 
   <!-- ================= UPDATES ================= -->
   <section class="view" id="updates">
+    <div class="updates-ambient" id="updatesAmbient" aria-hidden="true"></div>
     <div class="wrap updates-wrap">
       <div class="page-head" style="padding:0 0 30px">
         <div class="eyebrow">Patch Notes &amp; News</div>
         <h1>Updates</h1>
       </div>
       <div class="updates-empty">
-        <div class="ue-badge">Coming soon</div>
+        <svg class="ue-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2"/><path d="M9 2h6M12 2v3"/></svg>
+        <div class="ue-badge"><span class="ue-dot"></span>Coming soon</div>
         <h3>No updates just yet</h3>
         <p>Patch notes, balance changes, and release news will land here as Valour grows. Follow along on Discord and X so you don't miss the first drop.</p>
         <div class="foot-cta" style="justify-content:center">
@@ -169,7 +188,7 @@
             <a href="https://discord.gg/V3vfG7X4F" aria-label="Discord" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.3 5.3A16.7 16.7 0 0015.1 4l-.2.4a15.5 15.5 0 014 .6A11 11 0 003 5a15.6 15.6 0 013.9-.6L6.7 4a16.7 16.7 0 00-4.1 1.3C.5 8.4-.1 11.4.2 14.3A16.8 16.8 0 005.3 17l.9-1.2a11 11 0 01-1.7-.8l.4-.3a11.8 11.8 0 0010.1 0l.4.3c-.5.3-1.1.6-1.7.8L14.7 17a16.7 16.7 0 005.1-2.6c.4-3.4-.6-6.4-2.5-9.1zM8.3 12.6c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6zm5.4 0c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6z"/></svg></a>
             <a href="https://x.com/ValourTCG" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7 8 8.2 12h-6.4l-5-7.3L5.8 22H2.7l7.5-8.6L2.3 2h6.6l4.5 6.6L18.9 2z"/></svg></a>
           </div>
-          <a class="btn-download" href="#" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg> Download the game</a>
+          <a class="btn-download" aria-disabled="true" title="Coming soon — not available yet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg> Download the game</a>
         </div>
       </div>
     </div>
@@ -189,7 +208,7 @@
         <a href="https://x.com/ValourTCG" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7 8 8.2 12h-6.4l-5-7.3L5.8 22H2.7l7.5-8.6L2.3 2h6.6l4.5 6.6L18.9 2z"/></svg></a>
         <a href="https://discord.gg/V3vfG7X4F" aria-label="Discord" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.3 5.3A16.7 16.7 0 0015.1 4l-.2.4a15.5 15.5 0 014 .6A11 11 0 003 5a15.6 15.6 0 013.9-.6L6.7 4a16.7 16.7 0 00-4.1 1.3C.5 8.4-.1 11.4.2 14.3A16.8 16.8 0 005.3 17l.9-1.2a11 11 0 01-1.7-.8l.4-.3a11.8 11.8 0 0010.1 0l.4.3c-.5.3-1.1.6-1.7.8L14.7 17a16.7 16.7 0 005.1-2.6c.4-3.4-.6-6.4-2.5-9.1zM8.3 12.6c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6zm5.4 0c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6z"/></svg></a>
       </div>
-      <a class="btn-download" href="#" download>
+      <a class="btn-download" aria-disabled="true" title="Coming soon — not available yet">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
         Download the game
       </a>
@@ -206,7 +225,7 @@
     <a href="#lore" data-nav="lore" class="btn-ghost" style="padding:8px 12px">Lore</a>
     <a href="#updates" data-nav="updates" class="btn-ghost" style="padding:8px 12px">News</a>
   </nav>
-  <a class="btn-download" href="#" download>
+  <a class="btn-download" aria-disabled="true" title="Coming soon — not available yet">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
     Download
   </a>

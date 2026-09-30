@@ -26,26 +26,26 @@
   </a>
 
   <nav class="main" aria-label="Primary">
-    <a href="#home"    data-nav="home">Home</a>
-    <a href="#heroes"  data-nav="heroes">Heroes</a>
-    <a href="#lore"    data-nav="lore">Lore</a>
-    <a href="#updates" data-nav="updates">Updates</a>
+    <a data-track="nav_home" data-track-placement="header" href="#home"    data-nav="home">Home</a>
+    <a data-track="nav_heroes" data-track-placement="header" href="#heroes"  data-nav="heroes">Heroes</a>
+    <a data-track="nav_lore" data-track-placement="header" href="#lore"    data-nav="lore">Lore</a>
+    <a data-track="nav_updates" data-track-placement="header" href="#updates" data-nav="updates">Updates</a>
   </nav>
 
   <div class="header-right">
     <div class="socials" aria-label="Social links">
       <!-- REPLACE href="#" with your real links -->
-      <a href="https://www.instagram.com/valourtcg/" aria-label="Instagram" target="_blank" rel="noopener">
+      <a data-track="social_instagram" data-track-placement="header" href="https://www.instagram.com/valourtcg/" aria-label="Instagram" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
       </a>
-      <a href="https://x.com/ValourTCG" aria-label="X" target="_blank" rel="noopener">
+      <a data-track="social_x" data-track-placement="header" href="https://x.com/ValourTCG" aria-label="X" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7 8 8.2 12h-6.4l-5-7.3L5.8 22H2.7l7.5-8.6L2.3 2h6.6l4.5 6.6L18.9 2zm-2.2 18h1.7L7.4 3.9H5.6L16.7 20z"/></svg>
       </a>
-      <a href="https://discord.gg/V3vfG7X4F" aria-label="Discord" target="_blank" rel="noopener">
+      <a data-track="social_discord" data-track-placement="header" href="https://discord.gg/V3vfG7X4F" aria-label="Discord" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.3 5.3A16.7 16.7 0 0015.1 4l-.2.4a15.5 15.5 0 014 .6A11 11 0 003 5a15.6 15.6 0 013.9-.6L6.7 4a16.7 16.7 0 00-4.1 1.3C.5 8.4-.1 11.4.2 14.3A16.8 16.8 0 005.3 17l.9-1.2a11 11 0 01-1.7-.8l.4-.3a11.8 11.8 0 0010.1 0l.4.3c-.5.3-1.1.6-1.7.8L14.7 17a16.7 16.7 0 005.1-2.6c.4-3.4-.6-6.4-2.5-9.1zM8.3 12.6c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6zm5.4 0c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6z"/></svg>
       </a>
     </div>
-    <a class="btn-download" id="dlTop" href="https://valour-tcg.vercel.app/">
+    <a data-track="play_button_header" data-track-view="play_button_header" class="btn-download" id="dlTop" href="https://valour-tcg.vercel.app/">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 001.5.86l12-7.5a1 1 0 000-1.72l-12-7.5A1 1 0 007 4.5z"/></svg>
       Play now
     </a>
@@ -68,11 +68,11 @@
         <div class="rule"><span>The Trading Card Game</span></div>
         <p class="lead">Draft heroes, forge your deck, and outwit your rival across a battlefield where a single card can turn the tide.</p>
         <div class="hero-cta">
-          <a class="btn-download" href="https://valour-tcg.vercel.app/">
+          <a data-track="play_button_hero" data-track-view="play_button_hero" class="btn-download" href="https://valour-tcg.vercel.app/">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 001.5.86l12-7.5a1 1 0 000-1.72l-12-7.5A1 1 0 007 4.5z"/></svg>
             Play now
           </a>
-          <a class="btn-ghost" href="#lore" data-nav="lore">
+          <a data-track="read_lore" data-track-view="read_lore" class="btn-ghost" href="#lore" data-nav="lore">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
             Read the lore
           </a>
@@ -115,7 +115,7 @@
         </div>
         <div class="shots" id="shotGallery"><!-- built by JS from VALOUR_SHOTS --></div>
         <div style="margin-top:54px">
-          <a class="btn-download" href="https://valour-tcg.vercel.app/">
+          <a data-track="play_button_gameplay" data-track-view="play_button_gameplay" class="btn-download" href="https://valour-tcg.vercel.app/">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 001.5.86l12-7.5a1 1 0 000-1.72l-12-7.5A1 1 0 007 4.5z"/></svg>
             Play now
           </a>
@@ -186,10 +186,10 @@
         <p>Patch notes, balance changes, and release news will land here as Valour grows. Follow along on Discord and X so you don't miss the first drop.</p>
         <div class="foot-cta" style="justify-content:center">
           <div class="socials" style="display:flex">
-            <a href="https://discord.gg/V3vfG7X4F" aria-label="Discord" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.3 5.3A16.7 16.7 0 0015.1 4l-.2.4a15.5 15.5 0 014 .6A11 11 0 003 5a15.6 15.6 0 013.9-.6L6.7 4a16.7 16.7 0 00-4.1 1.3C.5 8.4-.1 11.4.2 14.3A16.8 16.8 0 005.3 17l.9-1.2a11 11 0 01-1.7-.8l.4-.3a11.8 11.8 0 0010.1 0l.4.3c-.5.3-1.1.6-1.7.8L14.7 17a16.7 16.7 0 005.1-2.6c.4-3.4-.6-6.4-2.5-9.1zM8.3 12.6c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6zm5.4 0c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6z"/></svg></a>
-            <a href="https://x.com/ValourTCG" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7 8 8.2 12h-6.4l-5-7.3L5.8 22H2.7l7.5-8.6L2.3 2h6.6l4.5 6.6L18.9 2z"/></svg></a>
+            <a data-track="social_discord" data-track-placement="updates" href="https://discord.gg/V3vfG7X4F" aria-label="Discord" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.3 5.3A16.7 16.7 0 0015.1 4l-.2.4a15.5 15.5 0 014 .6A11 11 0 003 5a15.6 15.6 0 013.9-.6L6.7 4a16.7 16.7 0 00-4.1 1.3C.5 8.4-.1 11.4.2 14.3A16.8 16.8 0 005.3 17l.9-1.2a11 11 0 01-1.7-.8l.4-.3a11.8 11.8 0 0010.1 0l.4.3c-.5.3-1.1.6-1.7.8L14.7 17a16.7 16.7 0 005.1-2.6c.4-3.4-.6-6.4-2.5-9.1zM8.3 12.6c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6zm5.4 0c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6z"/></svg></a>
+            <a data-track="social_x" data-track-placement="updates" href="https://x.com/ValourTCG" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7 8 8.2 12h-6.4l-5-7.3L5.8 22H2.7l7.5-8.6L2.3 2h6.6l4.5 6.6L18.9 2z"/></svg></a>
           </div>
-          <a class="btn-download" href="https://valour-tcg.vercel.app/"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 001.5.86l12-7.5a1 1 0 000-1.72l-12-7.5A1 1 0 007 4.5z"/></svg> Play now</a>
+          <a data-track="play_button_updates" data-track-view="play_button_updates" class="btn-download" href="https://valour-tcg.vercel.app/"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 001.5.86l12-7.5a1 1 0 000-1.72l-12-7.5A1 1 0 007 4.5z"/></svg> Play now</a>
         </div>
       </div>
     </div>
@@ -205,11 +205,11 @@
     </div>
     <div class="foot-cta">
       <div class="socials" style="display:flex">
-        <a href="https://www.instagram.com/valourtcg/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        <a href="https://x.com/ValourTCG" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7 8 8.2 12h-6.4l-5-7.3L5.8 22H2.7l7.5-8.6L2.3 2h6.6l4.5 6.6L18.9 2z"/></svg></a>
-        <a href="https://discord.gg/V3vfG7X4F" aria-label="Discord" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.3 5.3A16.7 16.7 0 0015.1 4l-.2.4a15.5 15.5 0 014 .6A11 11 0 003 5a15.6 15.6 0 013.9-.6L6.7 4a16.7 16.7 0 00-4.1 1.3C.5 8.4-.1 11.4.2 14.3A16.8 16.8 0 005.3 17l.9-1.2a11 11 0 01-1.7-.8l.4-.3a11.8 11.8 0 0010.1 0l.4.3c-.5.3-1.1.6-1.7.8L14.7 17a16.7 16.7 0 005.1-2.6c.4-3.4-.6-6.4-2.5-9.1zM8.3 12.6c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6zm5.4 0c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6z"/></svg></a>
+        <a data-track="social_instagram" data-track-placement="footer" href="https://www.instagram.com/valourtcg/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a data-track="social_x" data-track-placement="footer" href="https://x.com/ValourTCG" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7 8 8.2 12h-6.4l-5-7.3L5.8 22H2.7l7.5-8.6L2.3 2h6.6l4.5 6.6L18.9 2z"/></svg></a>
+        <a data-track="social_discord" data-track-placement="footer" href="https://discord.gg/V3vfG7X4F" aria-label="Discord" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.3 5.3A16.7 16.7 0 0015.1 4l-.2.4a15.5 15.5 0 014 .6A11 11 0 003 5a15.6 15.6 0 013.9-.6L6.7 4a16.7 16.7 0 00-4.1 1.3C.5 8.4-.1 11.4.2 14.3A16.8 16.8 0 005.3 17l.9-1.2a11 11 0 01-1.7-.8l.4-.3a11.8 11.8 0 0010.1 0l.4.3c-.5.3-1.1.6-1.7.8L14.7 17a16.7 16.7 0 005.1-2.6c.4-3.4-.6-6.4-2.5-9.1zM8.3 12.6c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6zm5.4 0c-.8 0-1.4-.7-1.4-1.6s.6-1.6 1.4-1.6 1.4.7 1.4 1.6-.6 1.6-1.4 1.6z"/></svg></a>
       </div>
-      <a class="btn-download" href="https://valour-tcg.vercel.app/">
+      <a data-track="play_button_footer" data-track-view="play_button_footer" class="btn-download" href="https://valour-tcg.vercel.app/">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 001.5.86l12-7.5a1 1 0 000-1.72l-12-7.5A1 1 0 007 4.5z"/></svg>
         Play now
       </a>
@@ -221,12 +221,12 @@
 <!-- ================= MOBILE STICKY PLAY ================= -->
 <div class="mobile-dl">
   <nav class="mobile-nav" aria-label="Mobile">
-    <a href="#home" data-nav="home" class="btn-ghost" style="padding:8px 12px">Home</a>
-    <a href="#heroes" data-nav="heroes" class="btn-ghost" style="padding:8px 12px">Heroes</a>
-    <a href="#lore" data-nav="lore" class="btn-ghost" style="padding:8px 12px">Lore</a>
-    <a href="#updates" data-nav="updates" class="btn-ghost" style="padding:8px 12px">News</a>
+    <a data-track="nav_home" data-track-placement="mobile_nav" href="#home" data-nav="home" class="btn-ghost" style="padding:8px 12px">Home</a>
+    <a data-track="nav_heroes" data-track-placement="mobile_nav" href="#heroes" data-nav="heroes" class="btn-ghost" style="padding:8px 12px">Heroes</a>
+    <a data-track="nav_lore" data-track-placement="mobile_nav" href="#lore" data-nav="lore" class="btn-ghost" style="padding:8px 12px">Lore</a>
+    <a data-track="nav_updates" data-track-placement="mobile_nav" href="#updates" data-nav="updates" class="btn-ghost" style="padding:8px 12px">News</a>
   </nav>
-  <a class="btn-download" href="https://valour-tcg.vercel.app/">
+  <a data-track="play_button_mobile_nav" data-track-view="play_button_mobile_nav" class="btn-download" href="https://valour-tcg.vercel.app/">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 001.5.86l12-7.5a1 1 0 000-1.72l-12-7.5A1 1 0 007 4.5z"/></svg>
     Play
   </a>
@@ -236,5 +236,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/valour-analytics.js"></script>
+<script>
+  // Click/view tracking for the Valour dashboard. The publishable key can only insert analytics events.
+  ValourAnalytics.init({
+    url: "https://xnephkfnrstmjlavvlys.supabase.co",
+    key: "sb_publishable_tXmNtMMOMQVHOV66cc5CPw__W3yhwE-",
+    source: "landing",
+  });
+</script>
 </body>
 </html>

@@ -38,10 +38,10 @@ GitHub Pages, itch.io, or your own server. Nothing to compile.
 
 ## Editing content — the two things you'll touch most
 
-**1. The download link.** Every "Download the game" button currently points to `#`.
-Search `index.html` for `href="#" download` and replace `#` with your installer
-URL (or store / itch.io page). There are several (header, hero, home, footer,
-mobile bar) — replace them all.
+**1. The play link.** Every "Play now" button (class `btn-download`) points to
+the web game at `https://valour-tcg.vercel.app/`. To change it, search
+`index.html` for that URL and replace it. There are several (header, hero, home,
+lore, footer, mobile bar) — replace them all.
 
 **2. Cards, heroes, and screenshots** live in `assets/js/data.js`:
 

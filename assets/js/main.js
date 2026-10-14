@@ -101,6 +101,9 @@
   spawnEmbers(document.getElementById('heroAmbient'),16);
   spawnEmbers(document.getElementById('loreAmbient'),18,['#ff6a4d','#c2aef2']);
   spawnEmbers(document.getElementById('updatesAmbient'),12,['#e9c876','#9dc3d8']);
+  spawnEmbers(document.getElementById('rulesAmbient'),14,['#c2aef2','#9dc3d8']);
+  spawnEmbers(document.getElementById('pillarsAmbient'),14,['#ff6a4d','#9dc3d8','#e9c876']);
+  spawnEmbers(document.getElementById('gameplayAmbient'),14,['#ff6a4d','#9dc3d8','#e9c876']);
 
   /* ---------- Updates: scroll-triggered reveal ---------- */
   (function(){
@@ -117,6 +120,55 @@
     io.observe(el);
   })();
 
+  /* ---------- Rules: Star Wars-style autoscroll crawl ---------- */
+  (function(){
+    var btn=document.getElementById('crawlToggle');
+    var stage=document.querySelector('.crawl-stage');
+    var scroller=document.getElementById('crawlScroll');
+    if(!btn || !stage || !scroller) return;
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      btn.style.display='none';
+      return;
+    }
+
+    var playing=false, paused=false, manuallyStopped=false, raf=null, lastT=null;
+    var SPEED=22; // px per second
+
+    function step(t){
+      if(lastT==null) lastT=t;
+      var dt=(t-lastT)/1000; lastT=t;
+      if(!paused){
+        scroller.scrollTop+=SPEED*dt;
+        if(scroller.scrollTop+scroller.clientHeight>=scroller.scrollHeight-2){ stopAll(); return; }
+      }
+      raf=requestAnimationFrame(step);
+    }
+    function startLoop(){
+      if(playing) return;
+      playing=true; lastT=null;
+      btn.classList.add('is-playing'); btn.setAttribute('aria-pressed','true');
+      raf=requestAnimationFrame(step);
+    }
+    function stopAll(){
+      playing=false; paused=false;
+      btn.classList.remove('is-playing'); btn.setAttribute('aria-pressed','false');
+      if(raf) cancelAnimationFrame(raf);
+      raf=null;
+    }
+
+    startLoop(); // autoplays on arrival
+
+    stage.addEventListener('mouseenter',function(){ paused=true; });
+    stage.addEventListener('mouseleave',function(){ if(!manuallyStopped) paused=false; });
+    stage.addEventListener('touchstart',function(){ paused=true; },{passive:true});
+    scroller.addEventListener('wheel',function(){ paused=true; },{passive:true});
+
+    btn.addEventListener('click',function(){
+      if(playing){ manuallyStopped=true; stopAll(); }
+      else{ manuallyStopped=false; startLoop(); }
+    });
+  })();
+
   /* ---------- Home gameplay gallery ---------- */
   (function(){
     var host=document.getElementById('shotGallery'); if(!host)return;
@@ -126,6 +178,20 @@
                     '<div class="shot-cap"><h3>'+s.title+'</h3><p>'+s.blurb+'</p></div>';
       host.appendChild(row);
     });
+    var rows=host.querySelectorAll('.shot');
+    if(!rows.length) return;
+    if(!('IntersectionObserver' in window)){
+      rows.forEach(function(r){ r.classList.add('in-view'); });
+      return;
+    }
+    var io=new IntersectionObserver(function(entries,obs){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        en.target.classList.add('in-view');
+        obs.unobserve(en.target);
+      });
+    },{threshold:.2});
+    rows.forEach(function(r){ io.observe(r); });
   })();
 
   /* ---------- Three.js floating card scene ---------- */

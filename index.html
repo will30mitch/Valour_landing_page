@@ -27,6 +27,7 @@
     <a href="#home"    data-nav="home">Home</a>
     <a href="#heroes"  data-nav="heroes">Heroes</a>
     <a href="#lore"    data-nav="lore">Lore</a>
+    <a href="#rules"   data-nav="rules">Rules</a>
     <a href="#updates" data-nav="updates">Updates</a>
   </nav>
 
@@ -83,6 +84,7 @@
 
     <!-- Pillars -->
     <div class="band">
+      <div class="band-ambient" id="pillarsAmbient" aria-hidden="true"></div>
       <div class="wrap">
         <div class="band-head">
           <h2>Three things every match comes down to</h2>
@@ -107,6 +109,7 @@
 
     <!-- Gameplay gallery (real in-game screenshots) -->
     <div class="band" id="gameplay">
+      <div class="band-ambient" id="gameplayAmbient" aria-hidden="true"></div>
       <div class="wrap">
         <div class="band-head">
           <h2>See Valour in action</h2>
@@ -193,6 +196,218 @@
       </div>
     </div>
   </section>
+
+  <!-- ================= RULES ================= -->
+  <section class="view" id="rules">
+    <div class="rules-ambient" id="rulesAmbient" aria-hidden="true"></div>
+    <div class="wrap rules-wrap">
+      <div class="page-head">
+        <div class="eyebrow">The Rulebook</div>
+        <h1>How to Play</h1>
+      </div>
+
+      <div class="crawl-stage">
+        <button class="crawl-toggle" id="crawlToggle" type="button" aria-pressed="false" aria-controls="crawlScroll" title="Autoplays — hover or scroll to pause">
+          <span class="crawl-toggle-dot"></span> Autoscroll
+        </button>
+        <div class="crawl-scroll" id="crawlScroll" tabindex="0">
+          <div class="crawl-text">
+            <p class="crawl-lede">In the realm of Eryndor, order and chaos war for dominion. Gather your forces, master the Dominance Chain, and call down Heroes of legend. Only the valiant will stand.</p>
+
+            <hr>
+            <h2>The Objective</h2>
+            <p>Two players duel with custom-built decks. Each begins with <strong>8,000 Life Points</strong>, <strong>25 Valour Points</strong>, and a hand of <strong>5 cards</strong>.</p>
+            <p>You win when your opponent:</p>
+            <ul>
+              <li>Falls to <strong>0 Life Points</strong></li>
+              <li>Begins their Draw Phase with <strong>no cards left in their deck</strong></li>
+              <li>Runs out of <strong>time</strong> on their match clock</li>
+              <li>Is <strong>unable to perform a required game action</strong></li>
+              <li><strong>Concedes</strong> or <strong>disconnects</strong></li>
+            </ul>
+
+            <hr>
+            <h2>Building Your Deck</h2>
+            <ul>
+              <li>A deck holds <strong>40 to 60 cards</strong>.</li>
+              <li>You may include up to <strong>3 copies</strong> of any card.</li>
+              <li><strong>Heroes are legendary.</strong> Each specific Hero may appear only <strong>once</strong> in your deck, though you may run as many different Heroes as you like.</li>
+              <li>There is no sideboard and no minimum count for any card type.</li>
+            </ul>
+
+            <hr>
+            <h2>The Battlefield</h2>
+            <p>Each player commands two rows of five slots.</p>
+            <p><strong>The Front Row</strong> holds your fighters: <strong>Combatants</strong>, <strong>Champions</strong>, and <strong>Heroes</strong>.</p>
+            <p><strong>The Back Row</strong> holds your support: <strong>Runics</strong>, <strong>Domains</strong>, and <strong>Artillery</strong>.</p>
+            <p>Where a unit stands matters. Some abilities reward units that fight side by side, others reward a lone duelist, and some project an aura onto the enemy units directly across from them.</p>
+
+            <hr>
+            <h2>The Cards</h2>
+            <p><strong>Combatants</strong> are the backbone of every army. They are disciplined soldiers and sellswords with solid stats and no special abilities.</p>
+            <p><strong>Champions</strong> are battle-tested units with abilities that bend the rules of combat in their favour.</p>
+            <p><strong>Heroes</strong> are the named legends of Eryndor. Their stats are mighty and their abilities are unique, and summoning one can turn the tide of any battle.</p>
+            <p><strong>Runics</strong> are arcane workings that strengthen your forces, weaken the enemy, draw cards, or reclaim the fallen.</p>
+            <p><strong>Domains</strong> are realms of power that reshape the battlefield for as long as they stand. Each player may hold only <strong>one Domain</strong> at a time. Playing a new Domain sends the old one to the Graveyard.</p>
+            <p><strong>Artillery</strong> cards are hidden traps and siege engines. They wait face-down in the Back Row and spring when the moment is right, often in response to your opponent's own moves.</p>
+            <p>Every unit has a <strong>Level</strong>, an <strong>Attack (ATK)</strong> value, a <strong>Defense (DEF)</strong> value, and an <strong>Aspect</strong> within the Dominance Chain.</p>
+            <h3>Effect Durations</h3>
+            <p>Card effects carry one of four symbols that tell you how long they last:</p>
+            <ul>
+              <li><strong>Burst</strong>: resolves once, then it is done.</li>
+              <li><strong>Eternal</strong>: stays active for as long as the card remains face-up on the field.</li>
+              <li><strong>Timed</strong>: lasts for a set number of turns, counting down.</li>
+              <li><strong>Domain</strong>: a persistent realm effect that lasts until it is destroyed or replaced.</li>
+            </ul>
+
+            <hr>
+            <h2>Starting the Match</h2>
+            <ol>
+              <li>Both decks are shuffled and the first player is chosen at random.</li>
+              <li>Each player draws <strong>5 cards</strong>.</li>
+              <li><strong>Mulligan:</strong> once, during your first turn, you may shuffle your opening hand back into your deck and draw a new one with <strong>one fewer card</strong>.</li>
+              <li>The first player <strong>skips their Draw Phase</strong> on the very first turn of the match.</li>
+            </ol>
+
+            <hr>
+            <h2>The Turn</h2>
+            <p>Each turn moves through five phases.</p>
+            <p><strong>1. Draw Phase</strong>: Draw one card. If your deck is empty when your Draw Phase begins, you lose.</p>
+            <p><strong>2. Main Phase 1</strong>: Summon units, place and activate Back Row cards, change positions, and spend Valour Points.</p>
+            <p><strong>3. Battle Phase</strong>: Declare attacks with your eligible units.</p>
+            <p><strong>4. Main Phase 2</strong>: Act again after the battle settles.</p>
+            <p><strong>5. End Phase</strong>: If you hold more than <strong>7 cards</strong>, discard down to 7. Then play passes to your opponent.</p>
+
+            <hr>
+            <h2>Summoning Units</h2>
+            <p>You may make <strong>one Normal Summon per turn</strong> during either Main Phase. Some cards grant extra summons.</p>
+            <p>The more powerful a unit is, the more it costs to summon:</p>
+            <ul>
+              <li><strong>Level 1–4</strong>: no tribute required.</li>
+              <li><strong>Level 5–6</strong>: sacrifice <strong>1</strong> unit you control.</li>
+              <li><strong>Level 7–10</strong>: sacrifice <strong>2</strong> units you control.</li>
+            </ul>
+            <p>Tributes must be Combatants, Champions, or Heroes from your own Front Row, and they go to the Graveyard.</p>
+            <p>Summon your unit in <strong>Attack Position</strong> to strike, or in <strong>Defense Position</strong> to hold the line.</p>
+            <h3>Setting a Unit Face-Down</h3>
+            <p>Champions and Combatants may be <strong>Set</strong> face-down in Defense Position, hiding them from your opponent. A Set unit is revealed when it is attacked. You may also <strong>Flip Summon</strong> it into Attack Position on a later turn, which can trigger its flip effect.</p>
+            <h3>Summoning Sickness</h3>
+            <p>A newly summoned unit cannot attack on the turn it arrives.</p>
+            <p>Units with <strong>Haste</strong> may attack immediately, except on the very first turn of the match, when no one may attack with a freshly summoned unit.</p>
+            <h3>Changing Position</h3>
+            <p>During your Main Phase you may switch a unit between Attack and Defense Position <strong>once per turn</strong>. A unit's position holds until your next turn, so you cannot change it on the turn it was summoned unless a card effect says otherwise.</p>
+
+            <hr>
+            <h2>Back Row Cards</h2>
+            <p><strong>Runics</strong> are cast during your Main Phase. You can activate one straight from your hand, or place it in your Back Row and activate it later.</p>
+            <p><strong>Artillery</strong> enters the Back Row <strong>face-down</strong>. It cannot be activated on the turn it was set, but after that it lies in wait. Many Artillery cards can be triggered <strong>during your opponent's turn</strong> in response to their summons, attacks, or activations. Some Artillery can also be fired straight from your hand during your Main Phase.</p>
+            <p><strong>Domains</strong> may be played face-up, or set face-down and revealed during a later Main Phase. Only one Domain may stand on your side at a time.</p>
+            <h3>The Response Window</h3>
+            <p>When a player summons, attacks, or activates an effect, their opponent may be given a <strong>response window</strong>. The opponent can activate an eligible Artillery card or effect, or pass. Once every response resolves, the original action completes.</p>
+
+            <hr>
+            <h2>Combat</h2>
+            <p>During your Battle Phase, any unit in <strong>Attack Position</strong> that has not yet attacked this turn may declare an attack. Units have no health and carry no damage between battles. Every clash is settled on the spot.</p>
+            <p><strong>Attack Position vs Attack Position</strong></p>
+            <p>The two ATK values are compared.</p>
+            <ul>
+              <li>The unit with the <strong>lower ATK is destroyed</strong>.</li>
+              <li>The difference between the two values is dealt as damage to the <strong>losing unit's controller</strong>.</li>
+              <li>If the values are <strong>equal, both units are destroyed</strong> and no damage is dealt.</li>
+            </ul>
+            <p><strong>Attack Position vs Defense Position</strong></p>
+            <p>The attacker's ATK is compared with the defender's DEF.</p>
+            <ul>
+              <li>If ATK is <strong>higher</strong>, the defender is destroyed.</li>
+              <li>If DEF is <strong>higher or equal</strong>, the defender survives.</li>
+              <li>The attacker is never destroyed by a defending unit, and no Life Point damage is dealt.</li>
+            </ul>
+            <p><strong>Direct Attacks</strong></p>
+            <p>If your opponent has <strong>no units in their Front Row</strong>, you may attack them directly. Your unit's full ATK is dealt as damage to their Life Points.</p>
+            <p><strong>Ghost Strike</strong></p>
+            <p>A unit with Ghost Strike may attack the opposing player directly even while enemy units stand guard. Each player may make only one Ghost Strike attack per turn.</p>
+            <p>Destroyed cards are sent to the <strong>Graveyard</strong>. Both Graveyards are public, and either player may inspect them at any time.</p>
+
+            <hr>
+            <h2>The Dominance Chain</h2>
+            <p>Every unit carries an <strong>Aspect</strong>, and the nine Aspects of Eryndor form an unbroken circle of dominance. Each Aspect overpowers the next:</p>
+            <p class="crawl-chain"><strong>Overlord</strong> ➜ <strong>Titan</strong> ➜ <strong>Juggernaut</strong> ➜ <strong>Assassin</strong> ➜ <strong>Leviathan</strong> ➜ <strong>Runebound</strong> ➜ <strong>Spellcaster</strong> ➜ <strong>Primordial Beast</strong> ➜ <strong>Abysswalker</strong> ➜ back to <strong>Overlord</strong></p>
+            <p>When a unit attacks:</p>
+            <ul>
+              <li>If its Aspect <strong>dominates</strong> the defender's, it gains <strong>+200 ATK</strong> for that battle.</li>
+              <li>If its Aspect is <strong>dominated by</strong> the defender's, it suffers <strong>−200 ATK</strong> for that battle.</li>
+              <li>Any other matchup, including identical Aspects, is neutral.</li>
+            </ul>
+            <p><strong>Dormant</strong> units have an affinity that has not yet awakened. They gain no advantage and suffer no penalty against any Aspect.</p>
+
+            <hr>
+            <h2>Valour Points (VP)</h2>
+            <p>Valour Points are your reserve of heroic will. You begin each match with <strong>25 VP</strong>, which is also the maximum. VP does <strong>not</strong> regenerate on its own; only card effects can restore it. Spend it wisely.</p>
+            <p><strong>13 VP: Heroic Acts</strong> <em>(choose one, once per match)</em></p>
+            <ul>
+              <li><strong>Summon a Hero</strong> straight from your hand with no tribute. A Hero called this way may <strong>attack immediately</strong>.</li>
+              <li><strong>View your opponent's hand.</strong></li>
+              <li><strong>Destroy a Hero</strong> your opponent controls.</li>
+            </ul>
+            <p>Once you use any 13 VP action, you can never use another one for the rest of the match.</p>
+            <p><strong>9 VP</strong>: Destroy a <strong>random card</strong> from your opponent's hand.</p>
+            <p><strong>7 VP</strong>: <strong>Draw</strong> a card.</p>
+            <p><strong>5 VP</strong>: <strong>Recover 1,000 Life Points.</strong></p>
+            <p><strong>1 VP</strong>: Give a unit <strong>+100 ATK</strong> until the end of the turn. This becomes available from <strong>Turn 3</strong> onward.</p>
+
+            <hr>
+            <h2>The Match Clock</h2>
+            <p>Each player has a personal chess clock that starts at <strong>300 seconds</strong> and gains <strong>30 seconds</strong> at the start of each of their turns. Your clock runs during your turns and while you are deciding on a response. <strong>If your clock hits zero, you lose.</strong></p>
+
+            <hr>
+            <h2>Running Out of Cards</h2>
+            <p>You only lose to an empty deck <strong>at the start of your own Draw Phase</strong>. Drawing from an empty deck through a card effect or a VP action does nothing, and you do not lose for it.</p>
+
+            <hr>
+            <h2>Keyword Glossary</h2>
+            <p>Many Champions and Heroes carry keywords. Roman numerals mark stronger tiers of the same ability.</p>
+            <p><strong>Ancient Hide</strong>: Cannot be destroyed by card effects, only by normal combat.</p>
+            <p><strong>Avenger's Fury II / III</strong>: Whenever another allied Champion or Combatant is destroyed, gain a Fury counter (max 3), each worth +200 / +250 ATK.</p>
+            <p><strong>Bloodlust</strong>: Gains +200 ATK until end of turn whenever it destroys an enemy unit in combat.</p>
+            <p><strong>Chorus of the Many</strong>: Gains +200 ATK for each Abysswalker Combatant you control, up to +800 ATK.</p>
+            <p><strong>Court of the Unburied</strong>: Gains a permanent +150 ATK whenever a Champion you control dies. There is no cap.</p>
+            <p><strong>Crippling Blow II</strong>: When attacking an enemy unit in Attack Position, that target loses 300 ATK for the battle.</p>
+            <p><strong>Cursed Presence</strong>: An enemy that attacks this unit deals damage to its own controller equal to half of the attacker's final ATK, on top of normal combat.</p>
+            <p><strong>Doomstrike 700</strong>: When attacking, if this unit's ATK exceeds the target's combat stat by 700 or more, the target is destroyed after combat.</p>
+            <p><strong>Double Ledger</strong>: Once per turn, when your opponent activates a Runic, draw 1 card.</p>
+            <p><strong>Duelist I / II / III</strong>: If neither neighbouring Front Row slot holds an allied Champion or Combatant, gains +300 / +400 / +500 ATK in combat.</p>
+            <p><strong>Eagerness</strong>: When targeted by an attack, its controller may switch it between Attack and Defense Position before the battle resolves.</p>
+            <p><strong>Executioner II</strong>: In any battle it is part of, if the opposing unit's combat stat is 1,600 or less, that unit is destroyed outright.</p>
+            <p><strong>Final Stand I / II / III</strong>: While you have 2,000 Life Points or fewer, gains +300 / +500 / +700 ATK and DEF.</p>
+            <p><strong>Fortification I / II / III</strong>: When defending, the attacker's ATK is reduced by 250 / 400 / 600 for that battle.</p>
+            <p><strong>Ghost Strike</strong>: May attack the opposing player directly even while they control Front Row units, once per turn.</p>
+            <p><strong>Haste</strong>: May attack on the turn it is summoned.</p>
+            <p><strong>Hexblade</strong>: When attacking, curses the target with one random hex: −200 ATK, −200 DEF, cannot attack next turn, or cannot be targeted by attacks next turn.</p>
+            <p><strong>Infection II / III</strong>: An enemy unit that survives this unit's attack becomes Infected. It loses ATK in stages, worsening at the start of each of its controller's Battle Phases, up to −600 / −900 ATK.</p>
+            <p><strong>Iron Will</strong>: Ignores Dominance Chain penalties when attacking, but still gains its bonuses.</p>
+            <p><strong>Last Laugh</strong>: When destroyed in combat, deals damage equal to its own ATK to the controller of the unit that destroyed it.</p>
+            <p><strong>Lifebond</strong>: On entering the field, bonds with one ally. For up to 5 of your turns, combat damage you take from battles involving that ally is halved. After three such preventions, this unit is destroyed.</p>
+            <p><strong>Merchant</strong>: Gains +50 ATK (in Attack Position) or +50 DEF (in Defense Position) for each Artillery card you control.</p>
+            <p><strong>Momentum I / II</strong>: Gains +100 / +150 ATK for each consecutive turn it attacks, stacking up to three times. A turn without an attack resets the streak.</p>
+            <p><strong>Plague</strong>: When it attacks, the defending unit is destroyed at the end of combat if it is still on the field.</p>
+            <p><strong>Preemptive Blow</strong>: Strikes first in battle, and wins exact ties.</p>
+            <p><strong>Rally Cry I / II / III</strong>: Whenever another ally declares an attack on a unit, that ally gains +100 / +200 / +300 ATK for the battle. Only the highest Rally Cry on your side applies.</p>
+            <p><strong>Repetition</strong>: May attack twice in a single Battle Phase.</p>
+            <p><strong>Revenant</strong>: When destroyed, it rises again at the start of your next turn with half its ATK and DEF. It can rise only once, and only if a Front Row slot is open.</p>
+            <p><strong>Standfast I / II / III</strong>: When defending, the attacker's ATK is reduced by 300 / 400 / 500 for that battle.</p>
+            <p><strong>Tactician A / B</strong>: Gains +100 ATK (A) or +100 DEF (B) for each allied Champion or Combatant beside it, up to +200.</p>
+            <p><strong>Tank I / II / III</strong>: Intercepts attacks aimed at its allies and redirects them to itself, 1 / 2 / 3 times per turn.</p>
+            <p><strong>Terror Aura</strong>: Enemy Champions and Combatants in the slot directly across from it, and the slots beside that one, suffer −200 ATK.</p>
+            <p><strong>Vampiric Touch</strong>: Heals you for 50% of any Life Point damage this unit deals to your opponent.</p>
+            <p><strong>Warlord's Command I / II / III</strong>: During your Battle Phase, all other allied Champions and Combatants gain +100 / +200 / +300 ATK and DEF.</p>
+
+            <hr>
+            <p class="crawl-close">Master the Chain. Command your legends. Prove your Valour.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <!-- ================= FOOTER ================= -->
@@ -223,6 +438,7 @@
     <a href="#home" data-nav="home" class="btn-ghost" style="padding:8px 12px">Home</a>
     <a href="#heroes" data-nav="heroes" class="btn-ghost" style="padding:8px 12px">Heroes</a>
     <a href="#lore" data-nav="lore" class="btn-ghost" style="padding:8px 12px">Lore</a>
+    <a href="#rules" data-nav="rules" class="btn-ghost" style="padding:8px 12px">Rules</a>
     <a href="#updates" data-nav="updates" class="btn-ghost" style="padding:8px 12px">News</a>
   </nav>
   <a class="btn-download" aria-disabled="true" title="Coming soon — not available yet">

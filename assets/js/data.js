@@ -8,7 +8,9 @@ window.HERO_ART=[
 
 window.HERO_ART_EXTRA=[
   {key:"quill",name:'Quill, the War Tyrant',cls:'Warlord',cost:7,accent:"#c8a24b",img:"assets/cards/quill.png"},
-  {key:"kael",name:'Kael, the Unbroken',cls:'Sworn Blade',cost:6,accent:"#8f7fbf",img:"assets/cards/kael.png"}
+  {key:"kael",name:'Kael, the Unbroken',cls:'Sworn Blade',cost:6,accent:"#8f7fbf",img:"assets/cards/kael.png"},
+  {key:"phantom",name:'The Phantom Emperor',cls:'Overlord',cost:8,accent:"#4f6fbf",img:"assets/cards/phantom.png"},
+  {key:"abyssal",name:'The Abyssal King',cls:'Abysswalker',cost:9,accent:"#2fb8c4",img:"assets/cards/abyssal.png"}
 ];
 
 window.VALOUR_SHOTS=[

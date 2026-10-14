@@ -9,6 +9,7 @@
     --ember:     #c0402f;   /* valour / fire */
     --steel:     #6e8ca0;   /* cool contrast */
     --wraith:    #8f7fbf;   /* death / veer */
+    --azure:     #7fc4ff;   /* bright blue accent, rules crawl */
     --line:      rgba(200,162,75,.18);
     --maxw: 1200px;
     --ease: cubic-bezier(.22,.61,.36,1);
@@ -136,7 +137,15 @@
   @keyframes sweep{0%{opacity:0;transform:scaleY(.3);transform-origin:top}40%{opacity:1}100%{opacity:0;transform:scaleY(1);transform-origin:top}}
 
   /* ---------- Home: pillars strip below hero ---------- */
-  .band{padding:96px 0;border-top:1px solid var(--line)}
+  .band{position:relative;z-index:0;overflow:hidden;padding:96px 0;border-top:1px solid var(--line)}
+  .band-ambient{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+  .band-ambient::before{content:"";position:absolute;inset:-12% -6%;filter:blur(10px);
+    background:
+      radial-gradient(52% 56% at 15% 15%,rgba(192,64,47,.32),transparent 66%),
+      radial-gradient(52% 56% at 85% 20%,rgba(110,140,160,.30),transparent 66%),
+      radial-gradient(58% 52% at 50% 95%,rgba(200,162,75,.28),transparent 70%);
+    animation:bandDrift 20s ease-in-out infinite}
+  @keyframes bandDrift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-2%,2%) scale(1.03)}}
   .band-head{max-width:640px;margin-bottom:52px}
   .band-head h2{font-size:clamp(30px,5vw,46px);letter-spacing:.02em}
   .band-head p{color:var(--bone-dim);margin-top:14px}
@@ -177,11 +186,11 @@
 
   #heroes{position:relative;z-index:0;overflow:hidden}
   .hero-ambient{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-  .hero-ambient::before{content:"";position:absolute;inset:-12% -6%;filter:blur(10px);
+  .hero-ambient::before{content:"";position:absolute;inset:-12% -6%;filter:blur(8px);
     background:
-      radial-gradient(42% 48% at 18% 12%,rgba(200,162,75,.18),transparent 65%),
-      radial-gradient(42% 48% at 82% 20%,rgba(110,140,160,.16),transparent 65%),
-      radial-gradient(52% 50% at 50% 96%,rgba(192,64,47,.13),transparent 68%);
+      radial-gradient(58% 62% at 18% 12%,rgba(200,162,75,.55),transparent 68%),
+      radial-gradient(58% 62% at 82% 20%,rgba(110,140,160,.50),transparent 68%),
+      radial-gradient(66% 64% at 50% 96%,rgba(192,64,47,.46),transparent 72%);
     animation:heroDrift 18s ease-in-out infinite}
   @keyframes heroDrift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-2.5%,2%) scale(1.04)}}
   .ember{position:absolute;bottom:-14px;border-radius:50%;
@@ -223,11 +232,11 @@
   /* ---------- LORE ---------- */
   #lore{position:relative;z-index:0;overflow:hidden}
   .lore-ambient{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-  .lore-ambient::before{content:"";position:absolute;inset:-12% -6%;filter:blur(16px);
+  .lore-ambient::before{content:"";position:absolute;inset:-12% -6%;filter:blur(12px);
     background:
-      radial-gradient(42% 40% at 22% 8%,rgba(192,64,47,.11),transparent 62%),
-      radial-gradient(42% 40% at 78% 78%,rgba(143,127,191,.12),transparent 62%),
-      radial-gradient(50% 38% at 50% 42%,rgba(200,162,75,.05),transparent 68%);
+      radial-gradient(58% 54% at 22% 8%,rgba(192,64,47,.50),transparent 66%),
+      radial-gradient(58% 54% at 78% 78%,rgba(143,127,191,.52),transparent 66%),
+      radial-gradient(64% 50% at 50% 42%,rgba(200,162,75,.30),transparent 72%);
     animation:loreDrift 22s ease-in-out infinite}
   @keyframes loreDrift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-2%,2.5%) scale(1.03)}}
 
@@ -296,9 +305,15 @@
 
   /* ---- gameplay gallery ---- */
   .shots{display:flex;flex-direction:column;gap:18px}
-  .shot{display:flex;gap:44px;align-items:center}
+  .shot{display:flex;gap:44px;align-items:center;
+    opacity:0;translate:0 30px;transition:opacity .6s var(--ease), translate .6s var(--ease)}
+  .shot.in-view{opacity:1;translate:0 0}
   .shot.alt{flex-direction:row-reverse}
-  .shot-img{flex:1.55;border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:0 40px 70px -40px rgba(0,0,0,.9)}
+  .shot-img{flex:1.55;border:1px solid var(--line);border-radius:8px;overflow:hidden;
+    box-shadow:0 40px 70px -40px rgba(0,0,0,.9);
+    transition:transform .4s var(--ease), box-shadow .4s var(--ease)}
+  .shot-img:hover{transform:translateY(-6px);
+    box-shadow:0 50px 80px -40px rgba(0,0,0,.95), 0 0 50px -14px rgba(200,162,75,.4)}
   .shot-img img{width:100%;display:block}
   .shot-cap{flex:1}
   .shot-cap h3{font-family:"Space Grotesk";font-weight:700;font-size:clamp(22px,2.6vw,28px);letter-spacing:0}
@@ -331,6 +346,11 @@
   .origin-body>p{color:var(--bone-dim);font-size:17.5px;line-height:1.8;max-width:64ch}
   /* ---- updates ambient ---- */
   #updates{position:relative;z-index:0;overflow:hidden}
+  #updates::before{content:"";position:absolute;inset:0;z-index:-3;pointer-events:none;
+    background-image:url(../cards/tamsin.png);background-size:cover;background-position:50% 28%;
+    opacity:.72;filter:saturate(1.1) brightness(1.05)}
+  #updates::after{content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;
+    background:linear-gradient(to bottom,rgba(7,9,16,.5) 0%,rgba(7,9,16,.08) 26%,rgba(7,9,16,.08) 78%,rgba(7,9,16,.35) 100%)}
   .updates-ambient{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
   .updates-ambient::before{content:"";position:absolute;inset:-12% -6%;filter:blur(16px);
     background:
@@ -340,10 +360,14 @@
   @keyframes updatesDrift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(2%,-2%) scale(1.03)}}
 
   /* ---- updates empty state ---- */
-  .updates-empty{text-align:center;padding:64px 30px;border:1px solid var(--line);border-radius:10px;
+  .updates-empty{position:relative;overflow:hidden;text-align:center;padding:64px 30px;
+    border:1px solid var(--line);border-radius:10px;
     background:radial-gradient(120% 120% at 50% 0,rgba(200,162,75,.06),transparent 60%);
     opacity:0;translate:0 26px;transition:opacity .6s var(--ease), translate .6s var(--ease)}
   .updates-empty.in-view{opacity:1;translate:0 0}
+  .updates-empty::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:rgba(7,9,16,.45)}
+  .updates-empty>*{position:relative;z-index:1}
   .ue-icon{display:block;width:34px;height:34px;margin:0 auto 18px;color:var(--gold)}
   .ue-badge{display:inline-flex;align-items:center;gap:8px;color:var(--gold);border:1px solid var(--line);border-radius:2px;
     padding:5px 14px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px}
@@ -356,3 +380,62 @@
   .updates-empty h3{font-family:"Cinzel";font-size:clamp(26px,4vw,34px)}
   .updates-empty p{color:var(--bone-dim);max-width:54ch;margin:16px auto 30px}
   @media(max-width:900px){ .shot,.shot.alt{flex-direction:column;gap:20px} }
+
+  /* ---------- RULES ambient ---------- */
+  #rules{position:relative;z-index:0;overflow:hidden}
+  .rules-ambient{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+  .rules-ambient::before{content:"";position:absolute;inset:-12% -6%;filter:blur(12px);
+    background:
+      radial-gradient(60% 60% at 6% 8%,rgba(143,127,191,.44),transparent 70%),
+      radial-gradient(60% 60% at 94% 10%,rgba(127,196,255,.38),transparent 70%),
+      radial-gradient(65% 60% at 10% 92%,rgba(127,196,255,.36),transparent 70%),
+      radial-gradient(65% 60% at 92% 94%,rgba(143,127,191,.42),transparent 70%);
+    animation:rulesDrift 22s ease-in-out infinite}
+  @keyframes rulesDrift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-2%,2%) scale(1.03)}}
+
+  /* ---------- RULES: Star Wars-style crawl ---------- */
+  .rules-wrap{padding:150px 0 120px;max-width:900px}
+  .crawl-stage{position:relative;height:min(74vh,820px);border-radius:14px;overflow:hidden;
+    border:1px solid rgba(143,127,191,.45);
+    box-shadow:0 0 70px -10px rgba(143,127,191,.45), 0 0 110px -20px rgba(127,196,255,.35);
+    background:radial-gradient(120% 90% at 50% 100%,rgba(110,140,160,.10),transparent 60%),var(--ink);
+    perspective:420px}
+  .crawl-stage::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background-image:url(../cards/oversoul.webp);background-size:cover;background-position:50% 22%;
+    opacity:.36;filter:saturate(1) brightness(.95)}
+  .crawl-stage::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:linear-gradient(to bottom,rgba(76,56,145,.55) 0%,transparent 24%,transparent 68%,rgba(40,70,110,.6) 100%),
+      linear-gradient(to right,rgba(76,56,145,.3) 0%,transparent 10%,transparent 90%,rgba(40,70,110,.3) 100%)}
+  .crawl-scroll{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;
+    padding:70px 40px 50vh;scrollbar-width:none;-ms-overflow-style:none}
+  .crawl-scroll::-webkit-scrollbar{display:none}
+  .crawl-text{transform:rotateX(22deg);transform-origin:50% 100%;max-width:620px;margin:0 auto;text-align:center}
+  .crawl-lede{font-family:"Cinzel";font-style:italic;color:#fff;font-size:clamp(16px,2vw,19px);
+    line-height:1.7;margin-bottom:10px;text-shadow:0 0 18px rgba(127,196,255,.4)}
+  .crawl-text hr{border:none;border-top:1px solid rgba(224,90,90,.4);width:50%;margin:40px auto}
+  .crawl-text h2{font-family:"Cinzel";font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;
+    font-size:clamp(19px,2.6vw,26px);margin:10px 0 16px;text-shadow:0 0 16px rgba(200,162,75,.4)}
+  .crawl-text h3{font-family:"Cinzel";font-weight:700;color:var(--azure);font-size:clamp(15px,1.8vw,18px);margin:26px 0 8px}
+  .crawl-text p{color:#f1eef9;font-size:15px;line-height:1.75;margin:10px 0}
+  .crawl-text ul,.crawl-text ol{list-style:none;padding:0;margin:14px 0}
+  .crawl-text li{color:#f1eef9;font-size:15px;line-height:1.75;margin:6px 0}
+  .crawl-text strong{color:#fff;font-weight:700}
+  .crawl-text em{color:var(--azure)}
+  .crawl-chain{color:#fff;font-size:14.5px;letter-spacing:.02em}
+  .crawl-chain strong{color:var(--ember)}
+  .crawl-close{font-family:"Cinzel";font-style:italic;color:var(--gold);font-size:clamp(16px,2vw,19px);margin-top:10px;
+    text-shadow:0 0 16px rgba(200,162,75,.4)}
+  .crawl-toggle{position:absolute;top:16px;left:16px;z-index:3;display:inline-flex;align-items:center;gap:9px;
+    padding:8px 14px;border:1px solid var(--line);border-radius:20px;background:rgba(10,12,20,.6);
+    backdrop-filter:blur(6px);color:var(--bone-dim);font-family:"Space Grotesk",sans-serif;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;
+    transition:border-color .25s var(--ease),color .25s var(--ease)}
+  .crawl-toggle:hover{color:var(--bone);border-color:var(--gold)}
+  .crawl-toggle-dot{width:8px;height:8px;border-radius:50%;background:var(--bone-dim);transition:background .25s var(--ease)}
+  .crawl-toggle.is-playing{color:var(--gold);border-color:var(--gold)}
+  .crawl-toggle.is-playing .crawl-toggle-dot{background:var(--gold);animation:uePulse 2s ease-out infinite}
+  @media (prefers-reduced-motion: reduce){.crawl-toggle{display:none}}
+  @media(max-width:900px){
+    .crawl-stage{height:70vh;perspective:none}
+    .crawl-text{transform:none}
+  }

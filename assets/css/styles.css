@@ -367,6 +367,17 @@
   .patch-note::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
     background:rgba(7,9,16,.45)}
   .patch-note>*{position:relative;z-index:1}
+  .patch-notes{display:flex;flex-direction:column;gap:22px}
+  .patch-notes>.patch-note:nth-child(n+4){display:none}
+  .pn-head{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:20px;cursor:pointer;list-style:none}
+  .pn-head::-webkit-details-marker{display:none}
+  .pn-head .pn-meta,.pn-head h2{grid-column:1}
+  .pn-chevron{grid-column:2;grid-row:1/span 2;width:34px;height:34px;padding:7px;color:var(--gold);
+    border:1px solid var(--line);border-radius:50%;transition:transform .3s var(--ease), background .2s}
+  .pn-head:hover .pn-chevron{background:rgba(200,162,75,.1)}
+  .patch-note[open] .pn-chevron{transform:rotate(180deg)}
+  .patch-note:not([open]){padding-top:32px;padding-bottom:32px}
+  .pn-body{margin-top:14px}
   .pn-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-bottom:18px}
   .pn-meta time{color:var(--bone-dim);font-size:14px;letter-spacing:.06em}
   .patch-note h2{font-family:"Cinzel";font-size:clamp(28px,4.4vw,40px);line-height:1.2;margin:0}
@@ -379,7 +390,7 @@
   .pn-group strong{color:var(--bone);font-weight:600}
   .updates-follow{text-align:center;margin-top:44px}
   .updates-follow p{color:var(--bone-dim);margin:0 0 20px}
-  @media(max-width:600px){ .patch-note{padding:32px 20px} }
+  @media(max-width:600px){ .patch-note,.patch-note:not([open]){padding:28px 20px} }
   .ue-badge{display:inline-flex;align-items:center;gap:8px;color:var(--gold);border:1px solid var(--line);border-radius:2px;
     padding:5px 14px;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
   .ue-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:uePulse 2s ease-out infinite}

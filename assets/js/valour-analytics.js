@@ -17,6 +17,10 @@
  *   ValourAnalytics.view('deck_builder_screen');     // screen / button impressions
  *   ValourAnalytics.cardPlayed('fireball', 'Fireball', { match_id: '...' });
  *   ValourAnalytics.endSession();                    // optional; also sent on tab close
+ *
+ * Automated browsers (navigator.webdriver, headless Chrome, crawlers) are never tracked.
+ * To stop tracking your own browser, open any tracked page once with ?notrack in the URL;
+ * open it with ?track to turn tracking back on.
  */
 (function (global) {
   'use strict';
@@ -34,6 +38,9 @@
   var hiddenAt = null;
   var visitorId = null;
 
+  var BOT_UA = /headless|\bbot\b|bot\/|bot;|bot\)|crawler|spider|slurp|lighthouse|playwright|puppeteer|selenium|phantomjs/i;
+  var OPT_OUT_KEY = 'valour_notrack';
+
   function uid() {
     if (global.crypto && global.crypto.randomUUID) return global.crypto.randomUUID();
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -42,16 +49,40 @@
     });
   }
 
-  function getVisitorId() {
+  function storedId(storageName) {
     try {
-      var id = localStorage.getItem('valour_vid');
+      var storage = global[storageName];
+      var id = storage.getItem('valour_vid');
       if (!id) {
         id = uid();
-        localStorage.setItem('valour_vid', id);
+        storage.setItem('valour_vid', id);
       }
       return id;
     } catch (e) {
-      return uid();
+      return null;
+    }
+  }
+
+  // localStorage keeps one id per browser. If it's blocked, fall back to one id per tab
+  // (sessionStorage), so reloads in that tab aren't counted as new visitors.
+  function getVisitorId() {
+    return storedId('localStorage') || storedId('sessionStorage') || uid();
+  }
+
+  function isAutomated() {
+    var nav = global.navigator || {};
+    return !!nav.webdriver || BOT_UA.test(nav.userAgent || '');
+  }
+
+  // ?notrack turns tracking off for this browser, ?track turns it back on.
+  function isOptedOut() {
+    try {
+      var params = new URLSearchParams(location.search);
+      if (params.has('notrack')) localStorage.setItem(OPT_OUT_KEY, '1');
+      else if (params.has('track')) localStorage.removeItem(OPT_OUT_KEY);
+      return localStorage.getItem(OPT_OUT_KEY) === '1';
+    } catch (e) {
+      return false;
     }
   }
 
@@ -89,6 +120,10 @@
       console.warn('[ValourAnalytics] call init() first');
       return;
     }
+    if (cfg.disabled) return;
+    var meta = {};
+    for (var k in metadata) if (Object.prototype.hasOwnProperty.call(metadata, k)) meta[k] = metadata[k];
+    if (global.navigator && navigator.userAgent) meta.ua = navigator.userAgent.slice(0, 256);
     var evt = {
       source: cfg.source,
       event_type: eventType,
@@ -96,7 +131,7 @@
       user_id: cfg.userId == null ? null : String(cfg.userId),
       session_id: sessionId,
       visitor_id: visitorId,
-      metadata: metadata || {},
+      metadata: meta,
     };
     if (cfg.debug) console.log('[ValourAnalytics]', evt);
     queue.push(evt);
@@ -180,7 +215,9 @@
         source: options.source === 'game' ? 'game' : 'landing',
         userId: options.userId == null ? null : options.userId,
         debug: !!options.debug,
+        disabled: isAutomated() || isOptedOut(),
       };
+      if (cfg.disabled && cfg.debug) console.log('[ValourAnalytics] tracking disabled for this browser');
       visitorId = getVisitorId();
       if (options.autoTrack !== false && typeof document !== 'undefined') {
         var start = function () {

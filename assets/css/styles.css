@@ -359,26 +359,35 @@
     animation:updatesDrift 20s ease-in-out infinite}
   @keyframes updatesDrift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(2%,-2%) scale(1.03)}}
 
-  /* ---- updates empty state ---- */
-  .updates-empty{position:relative;overflow:hidden;text-align:center;padding:64px 30px;
-    border:1px solid var(--line);border-radius:10px;
-    background:radial-gradient(120% 120% at 50% 0,rgba(200,162,75,.06),transparent 60%);
-    opacity:0;translate:0 26px;transition:opacity .6s var(--ease), translate .6s var(--ease)}
-  .updates-empty.in-view{opacity:1;translate:0 0}
-  .updates-empty::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  /* ---- updates: patch notes ---- */
+  .reveal-up{opacity:0;translate:0 26px;transition:opacity .6s var(--ease), translate .6s var(--ease)}
+  .reveal-up.in-view{opacity:1;translate:0 0}
+  .patch-note{position:relative;overflow:hidden;padding:48px 44px;border:1px solid var(--line);border-radius:10px;
+    background:radial-gradient(120% 80% at 50% 0,rgba(200,162,75,.06),transparent 60%)}
+  .patch-note::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
     background:rgba(7,9,16,.45)}
-  .updates-empty>*{position:relative;z-index:1}
-  .ue-icon{display:block;width:34px;height:34px;margin:0 auto 18px;color:var(--gold)}
+  .patch-note>*{position:relative;z-index:1}
+  .pn-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-bottom:18px}
+  .pn-meta time{color:var(--bone-dim);font-size:14px;letter-spacing:.06em}
+  .patch-note h2{font-family:"Cinzel";font-size:clamp(28px,4.4vw,40px);line-height:1.2;margin:0}
+  .pn-lede{color:var(--bone-dim);font-size:18px;max-width:62ch;margin:14px 0 8px}
+  .pn-group{margin-top:34px;padding-top:26px;border-top:1px solid var(--line)}
+  .pn-group h3{font-family:"Cinzel";font-size:20px;color:var(--gold);margin:0 0 14px}
+  .pn-group ul{margin:0;padding-left:1.2em}
+  .pn-group li{color:var(--bone-dim);margin:8px 0}
+  .pn-group li::marker{color:var(--gold)}
+  .pn-group strong{color:var(--bone);font-weight:600}
+  .updates-follow{text-align:center;margin-top:44px}
+  .updates-follow p{color:var(--bone-dim);margin:0 0 20px}
+  @media(max-width:600px){ .patch-note{padding:32px 20px} }
   .ue-badge{display:inline-flex;align-items:center;gap:8px;color:var(--gold);border:1px solid var(--line);border-radius:2px;
-    padding:5px 14px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px}
+    padding:5px 14px;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
   .ue-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:uePulse 2s ease-out infinite}
   @keyframes uePulse{
     0%{box-shadow:0 0 0 0 rgba(200,162,75,.55)}
     70%{box-shadow:0 0 0 8px rgba(200,162,75,0)}
     100%{box-shadow:0 0 0 0 rgba(200,162,75,0)}
   }
-  .updates-empty h3{font-family:"Cinzel";font-size:clamp(26px,4vw,34px)}
-  .updates-empty p{color:var(--bone-dim);max-width:54ch;margin:16px auto 30px}
   @media(max-width:900px){ .shot,.shot.alt{flex-direction:column;gap:20px} }
 
   /* ---------- RULES ambient ---------- */

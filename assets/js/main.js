@@ -119,17 +119,17 @@
 
   /* ---------- Updates: scroll-triggered reveal ---------- */
   (function(){
-    var el=document.querySelector('.updates-feed');
-    if(!el) return;
-    if(!('IntersectionObserver' in window)){ el.classList.add('in-view'); return; }
+    var els=document.querySelectorAll('.reveal-up');
+    if(!els.length) return;
+    if(!('IntersectionObserver' in window)){ els.forEach(function(el){ el.classList.add('in-view'); }); return; }
     var io=new IntersectionObserver(function(entries,obs){
       entries.forEach(function(en){
         if(!en.isIntersecting) return;
-        el.classList.add('in-view');
-        obs.disconnect();
+        en.target.classList.add('in-view');
+        obs.unobserve(en.target);
       });
-    },{threshold:.2});
-    io.observe(el);
+    },{threshold:.05});
+    els.forEach(function(el){ io.observe(el); });
   })();
 
   /* ---------- Rules: Star Wars-style autoscroll crawl ---------- */

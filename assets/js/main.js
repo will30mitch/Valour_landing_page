@@ -23,7 +23,7 @@
 
   /* ---------- Lore: scroll-triggered reveal ---------- */
   (function(){
-    var reveals=document.querySelectorAll('#lore .origin, #lore .lore-seal');
+    var reveals=document.querySelectorAll('#lore .chapter, #lore .origin, #lore .lore-seal');
     if(!reveals.length) return;
     if(!('IntersectionObserver' in window)){
       reveals.forEach(function(r){ r.classList.add('in-view'); });
@@ -84,22 +84,34 @@
   }
 
   /* ---------- Ambient embers ---------- */
-  function spawnEmbers(container,count,colors){
+  function spawnEmbers(container,count,colors,sides,tall){
     if(!container) return;
     for(var e=0;e<count;e++){
       var em=document.createElement('div'); em.className='ember';
       var size=(3+Math.random()*4).toFixed(1);
-      em.style.left=(Math.random()*100)+'%';
+      var left;
+      if(sides){
+        left=Math.random()<0.5 ? Math.random()*16 : 84+Math.random()*16;
+      } else {
+        left=Math.random()*100;
+      }
+      em.style.left=left+'%';
       em.style.width=size+'px'; em.style.height=size+'px';
       em.style.setProperty('--dx',((Math.random()*40)-20).toFixed(0)+'px');
       if(colors) em.style.setProperty('--spark',colors[e%colors.length]);
-      em.style.animationDuration=(9+Math.random()*10).toFixed(1)+'s';
+      if(tall){
+        em.style.bottom=(Math.random()*100)+'%';
+        em.style.setProperty('--rise',(-(1100+Math.random()*700)).toFixed(0)+'px');
+        em.style.animationDuration=(16+Math.random()*16).toFixed(1)+'s';
+      } else {
+        em.style.animationDuration=(9+Math.random()*10).toFixed(1)+'s';
+      }
       em.style.animationDelay=(-Math.random()*18).toFixed(1)+'s';
       container.appendChild(em);
     }
   }
   spawnEmbers(document.getElementById('heroAmbient'),16);
-  spawnEmbers(document.getElementById('loreAmbient'),18,['#ff6a4d','#c2aef2']);
+  spawnEmbers(document.getElementById('loreAmbient'),36,['#ff6a4d','#c2aef2'],true,true);
   spawnEmbers(document.getElementById('updatesAmbient'),12,['#e9c876','#9dc3d8']);
   spawnEmbers(document.getElementById('rulesAmbient'),14,['#c2aef2','#9dc3d8']);
   spawnEmbers(document.getElementById('pillarsAmbient'),14,['#ff6a4d','#9dc3d8','#e9c876']);
@@ -107,7 +119,7 @@
 
   /* ---------- Updates: scroll-triggered reveal ---------- */
   (function(){
-    var el=document.querySelector('.updates-empty');
+    var el=document.querySelector('.updates-feed');
     if(!el) return;
     if(!('IntersectionObserver' in window)){ el.classList.add('in-view'); return; }
     var io=new IntersectionObserver(function(entries,obs){

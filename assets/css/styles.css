@@ -201,7 +201,7 @@
     0%{opacity:0;transform:translate(0,0)}
     10%{opacity:.9}
     85%{opacity:.6}
-    100%{opacity:0;transform:translate(var(--dx,16px),-640px)}
+    100%{opacity:0;transform:translate(var(--dx,16px),var(--rise,-640px))}
   }
 
   .hero-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;padding-bottom:110px}
@@ -294,6 +294,8 @@
     .mobile-nav{display:flex;gap:4px;overflow:auto}
     body{padding-bottom:70px}
     .origin-art{display:none}
+    .chapter{flex-direction:column !important;align-items:flex-start}
+    .chapter-art{display:none}
   }
   @media(min-width:901px){.mobile-nav{display:none}}
 
@@ -318,6 +320,33 @@
   .shot-cap{flex:1}
   .shot-cap h3{font-family:"Space Grotesk";font-weight:700;font-size:clamp(22px,2.6vw,28px);letter-spacing:0}
   .shot-cap p{color:var(--bone-dim);margin-top:12px;font-size:16.5px}
+  /* ---- lore world chapters ---- */
+  .chapter{position:relative;display:flex;align-items:center;gap:40px;padding:34px 0 34px 24px;border-top:1px solid var(--line);
+    opacity:0;translate:0 26px;transition:opacity .6s var(--ease), translate .6s var(--ease)}
+  .chapter.in-view{opacity:1;translate:0 0}
+  .chapter:first-of-type{margin-top:48px}
+  .chapter--ember{--chapter-accent:var(--ember)}
+  .chapter--wraith{--chapter-accent:var(--wraith);flex-direction:row-reverse}
+  .chapter::before{content:"";position:absolute;left:0;top:34px;bottom:34px;width:2px;
+    background:linear-gradient(var(--chapter-accent,var(--gold)),transparent);
+    opacity:.75;animation:chapterGlow 4s ease-in-out infinite}
+  @keyframes chapterGlow{0%,100%{opacity:.5}50%{opacity:1}}
+  .chapter-body{flex:1 1 auto;min-width:0}
+  .chapter-art{flex:0 0 auto;align-self:center;width:clamp(140px,19vw,220px);aspect-ratio:3/4;
+    object-fit:cover;border-radius:4px;opacity:.85;filter:saturate(.95);pointer-events:none;user-select:none;
+    animation:originBreathe 10s ease-in-out infinite;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);
+    mask-image:linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%)}
+  .chapter-kicker{display:inline-flex;align-items:center;gap:9px;color:var(--gold);font-size:13px;
+    letter-spacing:.28em;text-transform:uppercase}
+  .chapter-dot{position:relative;width:6px;height:6px;border-radius:50%;background:var(--chapter-accent,var(--gold))}
+  .chapter-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;
+    border:1px solid var(--chapter-accent,var(--gold));animation:chapterPulse 2.4s ease-out infinite}
+  @keyframes chapterPulse{0%{transform:scale(.6);opacity:.8}100%{transform:scale(2.2);opacity:0}}
+  .chapter h3{font-family:"Cinzel";font-weight:700;font-size:clamp(22px,3.4vw,30px);margin-top:8px}
+  .chapter p{color:var(--bone-dim);font-size:16.5px;line-height:1.8;max-width:68ch;margin-top:14px}
+  .chapter .aspects{color:var(--bone);font-size:15px;letter-spacing:.03em;font-family:"Space Grotesk";font-weight:600}
+  .chapter-lead-out{color:var(--bone);font-family:"Cinzel";font-style:italic;font-size:18px}
   /* ---- lore origins ---- */
   @keyframes originBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
   .origin{position:relative;overflow:hidden;display:flex;align-items:center;gap:40px;
@@ -326,18 +355,20 @@
     transition:opacity .6s var(--ease), translate .6s var(--ease), background .4s var(--ease), box-shadow .4s var(--ease)}
   .origin.in-view{opacity:1;translate:0 0}
   .origin:first-of-type{margin-top:56px}
-  .origin--ike{--accent:var(--ember);background:linear-gradient(90deg,rgba(192,64,47,.02) 0%,rgba(192,64,47,.22) 100%)}
-  .origin--veer{--accent:var(--wraith);background:linear-gradient(90deg,rgba(143,127,191,.02) 0%,rgba(143,127,191,.24) 100%)}
+  .origin--ike{--accent:var(--ember);
+    background:linear-gradient(90deg,rgba(192,64,47,.02) 0%,rgba(192,64,47,.12) 100%),rgba(7,9,16,.55)}
+  .origin--veer{--accent:var(--wraith);
+    background:linear-gradient(90deg,rgba(143,127,191,.02) 0%,rgba(143,127,191,.13) 100%),rgba(7,9,16,.55)}
   .origin:hover{box-shadow:0 0 60px -18px var(--accent,transparent) inset}
   .origin-body{position:relative;z-index:1;flex:1 1 auto;min-width:0}
   .origin-art{position:relative;z-index:0;flex:0 0 auto;align-self:center;
     width:clamp(150px,20vw,240px);aspect-ratio:5/7;object-fit:cover;border-radius:4px;
-    opacity:.55;filter:saturate(.8);pointer-events:none;user-select:none;
+    opacity:.82;filter:saturate(.95);pointer-events:none;user-select:none;
     animation:originBreathe 10s ease-in-out infinite;
     transition:opacity .4s var(--ease);
     -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 16%,#000 84%,transparent 100%);
     mask-image:linear-gradient(to bottom,transparent 0%,#000 16%,#000 84%,transparent 100%)}
-  .origin:hover .origin-art{opacity:.72}
+  .origin:hover .origin-art{opacity:.95}
   .o-head{display:flex;flex-direction:column;gap:6px}
   .o-kicker{color:var(--gold);font-size:13px;letter-spacing:.28em;text-transform:uppercase}
   .o-head h3{font-family:"Cinzel";font-weight:700;font-size:clamp(26px,4vw,36px)}
@@ -359,26 +390,32 @@
     animation:updatesDrift 20s ease-in-out infinite}
   @keyframes updatesDrift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(2%,-2%) scale(1.03)}}
 
-  /* ---- updates empty state ---- */
-  .updates-empty{position:relative;overflow:hidden;text-align:center;padding:64px 30px;
-    border:1px solid var(--line);border-radius:10px;
-    background:radial-gradient(120% 120% at 50% 0,rgba(200,162,75,.06),transparent 60%);
+  /* ---- updates feed ---- */
+  .updates-feed{position:relative;height:min(72vh,780px);border-radius:10px;overflow:hidden;
+    border:1px solid var(--line);
+    background:radial-gradient(120% 60% at 50% 0,rgba(200,162,75,.06),transparent 60%);
     opacity:0;translate:0 26px;transition:opacity .6s var(--ease), translate .6s var(--ease)}
-  .updates-empty.in-view{opacity:1;translate:0 0}
-  .updates-empty::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-    background:rgba(7,9,16,.45)}
-  .updates-empty>*{position:relative;z-index:1}
-  .ue-icon{display:block;width:34px;height:34px;margin:0 auto 18px;color:var(--gold)}
-  .ue-badge{display:inline-flex;align-items:center;gap:8px;color:var(--gold);border:1px solid var(--line);border-radius:2px;
-    padding:5px 14px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px}
-  .ue-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:uePulse 2s ease-out infinite}
+  .updates-feed.in-view{opacity:1;translate:0 0}
+  .updates-feed::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:rgba(7,9,16,.55)}
+  .updates-feed::after{content:"";position:absolute;inset:0 0 auto 0;height:50px;z-index:2;pointer-events:none;
+    background:linear-gradient(to bottom,rgba(7,9,16,.8),transparent)}
+  .updates-scroll{position:relative;z-index:1;height:100%;overflow-y:auto;overflow-x:hidden;padding:30px 36px;
+    scrollbar-width:thin;scrollbar-color:var(--gold-lo) transparent}
+  .updates-scroll::-webkit-scrollbar{width:8px}
+  .updates-scroll::-webkit-scrollbar-track{background:transparent}
+  .updates-scroll::-webkit-scrollbar-thumb{background:var(--gold-lo);border-radius:4px}
+  .update-body .tag{margin-top:0}
+  .update-body h3{font-family:"Cinzel";font-size:clamp(24px,3.4vw,30px);margin-top:12px}
+  .update-body>p{color:var(--bone-dim);margin-top:14px;max-width:68ch}
+  .update-body h4{font-family:"Space Grotesk";font-weight:700;font-size:14px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gold);margin:30px 0 10px}
+  .update-body li strong{color:var(--bone)}
   @keyframes uePulse{
     0%{box-shadow:0 0 0 0 rgba(200,162,75,.55)}
     70%{box-shadow:0 0 0 8px rgba(200,162,75,0)}
     100%{box-shadow:0 0 0 0 rgba(200,162,75,0)}
   }
-  .updates-empty h3{font-family:"Cinzel";font-size:clamp(26px,4vw,34px)}
-  .updates-empty p{color:var(--bone-dim);max-width:54ch;margin:16px auto 30px}
   @media(max-width:900px){ .shot,.shot.alt{flex-direction:column;gap:20px} }
 
   /* ---------- RULES ambient ---------- */
